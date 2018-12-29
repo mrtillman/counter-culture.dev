@@ -1,3 +1,3 @@
 # developer
 
-developer tools, APIs and CLIs
+developer tools, APIs and interactive CLIs
