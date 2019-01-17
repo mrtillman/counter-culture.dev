@@ -1,3 +1,3 @@
-# developer
+# daily-avatar.dev
 
-developer tools, APIs and interactive CLIs
+developer tools and resources
