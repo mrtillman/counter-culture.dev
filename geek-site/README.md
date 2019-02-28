@@ -1,4 +1,4 @@
-# daily-avatar.dev.geek-site
+# counter-culture.dev.geek-site
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

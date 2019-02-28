@@ -1,3 +1,3 @@
-# daily-avatar.dev
+# counter-culture.dev
 
 developer tools and resources
