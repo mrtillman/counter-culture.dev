@@ -36,11 +36,12 @@ docker rmi mrtillman/counter-culture.app
 ```
 
 ## References
-https://docs.docker.com/engine/reference/commandline/build/
-https://docs.docker.com/engine/reference/commandline/run/
-https://docs.docker.com/engine/reference/commandline/stop/
-https://docs.docker.com/engine/reference/commandline/rm/
-https://docs.docker.com/engine/reference/commandline/rmi/
+https://docs.docker.com/engine/reference/commandline/build/<br/>
+https://docs.docker.com/engine/reference/commandline/run/<br/>
+https://docs.docker.com/engine/reference/commandline/stop/<br/>
+https://docs.docker.com/engine/reference/commandline/rm/<br/>
+https://docs.docker.com/engine/reference/commandline/rmi/<br/>
 
 ## See Also
-https://docker-curriculum.com/
+https://docker-curriculum.com/<br/>
+https://docs.docker.com/engine/security/apparmor/<br/>
