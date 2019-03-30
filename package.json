@@ -1,7 +1,7 @@
 {
-  "name": "counter-culture.dev.geek-site",
+  "name": "counter-culture.dev",
   "version": "0.0.1",
-  "description": "developer tools and resources",
+  "description": "developer site",
   "private": true,
   "dependencies": {
     "react": "^16.7.0",
