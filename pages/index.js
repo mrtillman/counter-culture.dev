@@ -1,13 +1,9 @@
-import Link from 'next/link';
+import Layout from '../components/layout';
 
 const Index = () => (
-  <div>
+  <Layout>
     <p>geeks.counter-culture.io</p>
-    <Link href='/about'>
-      {/* <a title="About Page">About Page</a> */}
-      <button title="About Page">About Page</button>
-    </Link>
-  </div>
+  </Layout>
 );
 
 export default Index;

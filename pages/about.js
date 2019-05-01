@@ -1,7 +1,9 @@
-export default function About() {
-  return (
-    <div>
-      <p>This is the about page</p>
-    </div>
-  )
-}
+import Layout from '../components/layout';
+
+const About = () => (
+  <Layout>
+    <p>This is the about page</p>
+  </Layout>
+);
+
+export default About;
