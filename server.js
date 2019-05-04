@@ -12,7 +12,7 @@ const onStartUp = () => {
   app.get('/posts/:id', (req, res) => {
     const actualPage = '/post'
     const queryParams = { id: req.params.id };
-    nx.render(req, res, actualPage, queryParams)''
+    nx.render(req, res, actualPage, queryParams);
   })
   
   app.get('/*', (req, res) => {
