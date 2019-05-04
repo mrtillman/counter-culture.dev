@@ -3,8 +3,8 @@ import Link from 'next/link';
 
 const PostLink = (props) => (
   <li>
-    <Link href={`/post?title=${props.title}`}>
-      <a>{props.title}</a>
+    <Link as={`/posts/${props.id}`} href={`/post?id=${props.id}`}>
+      <a>Post {props.id}</a>
     </Link>
   </li>
 );
@@ -13,9 +13,9 @@ const Index = () => (
   <Layout>
     <p>geeks.counter-culture.io</p>
     <ul>
-      <PostLink title="post 1" />
-      <PostLink title="post 2" />
-      <PostLink title="post 3" />
+      <PostLink id="1" />
+      <PostLink id="2" />
+      <PostLink id="3" />
     </ul>
   </Layout>
 );

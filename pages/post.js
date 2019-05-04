@@ -1,10 +1,10 @@
-import { withRouter} from 'next/router';
+import { withRouter } from 'next/router';
 import Layout from '../components/layout';
 
 const page = withRouter(props => (
   <Layout>
     <div>
-      <p>{props.router.query.title}</p>
+      <p>Post {props.router.query.id}</p>
     </div>
   </Layout>
 ));
