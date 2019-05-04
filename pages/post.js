@@ -14,21 +14,10 @@ const Post = props => (
 );
 
 Post.getInitialProps = async ({ req, query }) => {
-  
-  let id = '';
-  
-  if(req){
-    id = req.params.id;
-  }
-
-  if(query){
-    id = query.id;
-  }
-  
+  let id = req ? req.params.id : query.id;
   const res = await fetch(`${endpoint}/${id}`);
   const post = await res.json();
   return { post };
-  
 }
 
 export default withRouter(Post);

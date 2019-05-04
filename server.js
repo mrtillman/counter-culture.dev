@@ -7,6 +7,8 @@ const dev = process.env.NODE_ENV !== 'production'
 const nx = next({ dev });
 const handle = nx.getRequestHandler();
 
+const port = 9000;
+
 const onStartUp = () => {
 
   app.get('/posts/:id', (req, res) => {
@@ -19,8 +21,8 @@ const onStartUp = () => {
     return handle(req, res);
   })
 
-  http.createServer(app).listen(4000, function () {
-    console.log('magic is happening on port 4000');
+  http.createServer(app).listen(port, function () {
+    console.log(`magic is happening on port ${port}`);
   });
 
 }

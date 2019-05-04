@@ -12,6 +12,14 @@ const PostLink = (props) => (
   </li>
 );
 
+const Style = (props) => (
+  <style jsx>{`
+    p {
+      text-decoration: underline;
+    }
+  `}</style>
+);
+
 const Index = (props) => {
   const links = props.posts.map(post => (
     <PostLink key={post.id} id={post.id} />
@@ -22,6 +30,7 @@ const Index = (props) => {
       <ul>
         {links}
       </ul>
+      <Style/>
     </Layout>
   );
 };
