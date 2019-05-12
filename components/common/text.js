@@ -22,4 +22,10 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
 };
 
+TextInput.defaultProps = {
+  onChange: (e) => e.preventDefault()
+}
+
+TextInput.propTypes.defa
+
 export default TextInput;
