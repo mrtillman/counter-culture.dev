@@ -5,9 +5,6 @@ const Header = () => {
     <div>
       <Link href='/'>
         <a title="Home">Home</a>
-      </Link> &nbsp; | &nbsp;
-      <Link href='/about'>
-        <a title="About">About</a>
       </Link>
       <br/><br/>
     </div>
