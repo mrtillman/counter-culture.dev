@@ -1,4 +1,4 @@
-ROM node:latest
+node:latest
 
 WORKDIR /counter-culture.dev
 
