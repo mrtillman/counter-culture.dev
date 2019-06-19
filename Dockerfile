@@ -1,4 +1,4 @@
-node:latest
+FROM node:latest
 
 WORKDIR /counter-culture.dev
 
