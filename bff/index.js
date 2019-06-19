@@ -1,14 +1,15 @@
 import fetch from 'isomorphic-unfetch';
-
-const endpoint = "http://localhost:5000/api/v1/oauth/register"
+import SERVERS from '../constants/servers';
 
 export default class Backend {
   static RegisterClient(client){
     return new Promise((resolve, reject) => {
-      fetch(endpoint, {
+      fetch(`${SERVERS.SECURE}/api/v1/oauth2/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
+          // TODO: supply geek site token
+          // 'Authorization': `bearer ${this.access_token}`,
         },
         body: JSON.stringify(client)
       })

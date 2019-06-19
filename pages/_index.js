@@ -27,6 +27,11 @@ const Index = (props) => {
   return (
     <Layout>
       <p>geeks.counter-culture.io</p>
+      {/* 
+        TODO: add sign-in page, 
+              require login, 
+              incorporate passport.js
+      */}
       <ul>
         {links}
       </ul>
