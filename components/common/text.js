@@ -26,6 +26,4 @@ TextInput.defaultProps = {
   onChange: (e) => e.preventDefault()
 }
 
-TextInput.propTypes.defa
-
 export default TextInput;
