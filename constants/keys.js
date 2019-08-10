@@ -1,3 +1,3 @@
 module.exports = Object.freeze({
-  TOKEN_CACHE_KEY: 'ccult:token',
+  TOKEN_CACHE_KEY: 'cc:token',
 })

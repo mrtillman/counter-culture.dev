@@ -1,11 +1,11 @@
 import React from 'react';
+// import { CounterCulture } from 'counter-culture.client';
+import Backend from '../backend';
 import Layout from '../components/layout';
 import TextInput from '../components/common/text';
 import TextBoxList from '../components/common/textBoxList';
 import CheckBoxGroup from '../components/common/checkboxGroup';
-import Backend from '../backend';
-import uuid from 'uuid';
-import KEYS from '../constants/keys';
+import SERVERS from '../constants/servers';
 
 export default class Register extends React.Component {
   
@@ -13,12 +13,12 @@ export default class Register extends React.Component {
     super(props);
     this.state = {
       client: {
-        ClientName: "",
+        ClientName: "Test App",
         AllowedScopes: [
           {
             id: "counters:read",
             label: "Read Counters",
-            checked: true,
+            checked: false,
           },
           {
             id: "counters:profile",
@@ -38,20 +38,26 @@ export default class Register extends React.Component {
         ],
       }
     };
-    // const token = sessionStorage.getItem(KEYS.TOKEN_CACHE_KEY)
-    this.backend = new Backend("token_value");
-    this.onSubmit = this.onSubmit.bind(this);
+
+    // TODO: absorb into presentational 
+    // components and higher-order components
     this.updateAppInfo = this.updateAppInfo.bind(this);
     this.addNewUri = this.addNewUri.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.loadProfile = this.loadProfile.bind(this);
+  }
+
+  componentDidMount(){
+    this.loadProfile();
   }
 
   onSubmit(e){
     e.preventDefault();
-    this.backend.RegisterClient(this.state.client)
-        // .then(client => {
-        //   this.setState({ client });
-        // })
-        // .catch(console.log);
+    this.backend.registerClient(this.state.client)
+        .then(client => {
+          this.setState({ client });
+        })
+        .catch(console.log);
   }
 
   addNewUri(uri){
@@ -89,6 +95,23 @@ export default class Register extends React.Component {
     
     return this.setState({ client });
     
+  }
+
+  loadProfile(){
+    fetch(`${SERVERS.DEV}/user/profile`, {
+      method: 'post',
+      mode: 'no-cors',
+      cache: 'no-cache',
+    }).then(res => {
+      if(res.ok){
+        return res.json();
+      } else {
+        throw new Error(res.statusText);
+      }
+    }).then(profile => {
+      // TODO: absorb bff logic into client lib
+      this.backend = new Backend(profile.token);
+    }).catch(console.log);
   }
 
   render() {

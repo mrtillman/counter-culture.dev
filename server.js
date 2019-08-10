@@ -33,7 +33,6 @@ passport.use(new OAuth2Strategy({
   },
   function(issuer, sub, profile, jwtClaims, accessToken, refereshToken, tokenResponse, done) {
     profile.token = accessToken;
-    console.log('profile: ', profile);
     return done(null, profile);
   }
 ));
@@ -69,7 +68,11 @@ nx.prepare().then(() => {
       // Successful authentication, redirect home.
       res.redirect('/?logged_in=true');
     });
-  
+
+  app.post('/user/profile', (req, res) => {
+    res.json(req.user);
+    });
+
   app.get('/*', (req, res) => {
     return handle(req, res);
   })
