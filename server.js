@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const SERVERS = require('./constants/servers');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn;
 
 var passport = require('passport')
   , OAuth2Strategy = require('passport-openidconnect').Strategy;
@@ -72,6 +73,12 @@ nx.prepare().then(() => {
   app.post('/user/profile', (req, res) => {
     res.json(req.user);
     });
+
+  app.get('/register',
+    ensureLoggedIn('/'),
+    function(req, res){
+      return handle(req, res);
+    })
 
   app.get('/*', (req, res) => {
     return handle(req, res);
