@@ -12,9 +12,9 @@ export default class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      client: {
-        ClientName: "Test App",
-        AllowedScopes: [
+      viewModel: {
+        clientName: "Test App",
+        allowedScopes: [
           {
             id: "counters:read",
             label: "Read Counters",
@@ -26,7 +26,7 @@ export default class Register extends React.Component {
             checked: false,
           }
         ],
-        RedirectUris: [
+        redirectUris: [
           {
             id: "foo",
             value: "foo.com"
@@ -41,10 +41,11 @@ export default class Register extends React.Component {
 
     // TODO: absorb into presentational 
     // components and higher-order components
-    this.updateAppInfo = this.updateAppInfo.bind(this);
+    this.updateClientInfo = this.updateClientInfo.bind(this);
     this.addNewUri = this.addNewUri.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.loadProfile = this.loadProfile.bind(this);
+    this.getClient = this.getClient.bind(this);
   }
 
   componentDidMount(){
@@ -53,33 +54,37 @@ export default class Register extends React.Component {
 
   onSubmit(e){
     e.preventDefault();
-    this.backend.registerClient(this.state.client)
+    const client = this.getClient();
+    this.backend.registerClient(client)
         .then(client => {
-          this.setState({ client });
+          const { viewModel } = this.state;
+          viewModel.clientId = client.clientId;
+          viewModel.clientSecrets = client.clientSecrets;
+          this.setState({ viewModel });
         })
         .catch(console.log);
   }
 
   addNewUri(uri){
-    const client = this.state.client;
-    client.RedirectUris.push(uri);
-    this.setState({ client })
+    const { viewModel } = this.state;
+    viewModel.redirectUris.push(uri);
+    this.setState({ viewModel })
   }
 
-  updateAppInfo(e){
+  updateClientInfo(e){
   
-    const client = this.state.client;
+    const viewModel = this.state.viewModel;
     const field = e.target.name;
 
-    if(field === "AllowedScopes"){
-      client[field] = client[field].map(scope => {
+    if(field === "allowedScopes"){
+      viewModel[field] = viewModel[field].map(scope => {
         return (scope.id == e.target.id) 
                 ? { ...scope, checked: e.target.checked }
                 : scope;
       });
-    } else if(field === "RedirectUris"){
+    } else if(field === "redirectUris"){
       const redirectUris = [];
-      client[field].map(uri => {
+      viewModel[field].map(uri => {
         if(uri.id == e.target.id){
           if(e.target.value){
             redirectUris.push({ ...uri, value: e.target.value });
@@ -88,13 +93,27 @@ export default class Register extends React.Component {
           redirectUris.push(uri);
         }
       });
-      client[field] = redirectUris;
+      viewModel[field] = redirectUris;
     } else {
-      client[field] = e.target.value;
+      viewModel[field] = e.target.value;
     }
     
-    return this.setState({ client });
+    return this.setState({ viewModel });
     
+  }
+
+  getClient(){
+    // TODO: simplify using automapper-ts
+    return {
+      ClientName: this.state.viewModel.clientName,
+      AllowedScopes: this.state
+        .viewModel.allowedScopes
+        .filter(scope => scope.checked)
+        .map(scope => scope.id),
+      RedirectUris: this.state
+        .viewModel.redirectUris
+        .map(uri => uri.value)
+    }
   }
 
   loadProfile(){
@@ -119,35 +138,38 @@ export default class Register extends React.Component {
       <Layout>
         <form onSubmit={this.onSubmit}>
             <TextInput 
-              name="ClientName"
+              name="clientName"
               label="App Name"
-              value={this.state.client.ClientName}
-              onChange={this.updateAppInfo}
+              value={this.state.viewModel.clientName}
+              onChange={this.updateClientInfo}
             />
             <CheckBoxGroup
-              name="AllowedScopes"
+              name="allowedScopes"
               label="Scope"
-              options={this.state.client.AllowedScopes}
-              onChange={this.updateAppInfo}
+              options={this.state.viewModel.allowedScopes}
+              onChange={this.updateClientInfo}
             />
             <TextBoxList
-              name="RedirectUris"
+              name="redirectUris"
               label="Redirect URIs"
-              items={this.state.client.RedirectUris}
+              items={this.state.viewModel.redirectUris}
               onAddNew={this.addNewUri}
-              onChange={this.updateAppInfo}
+              onChange={this.updateClientInfo}
             />
             {
-              this.state.client.ClientId
+              this.state.viewModel.clientId
               ? <div>
                   <TextInput 
+                    name="clientId"
                     label="Client ID"
-                    value={this.state.client.ClientId}
+                    value={this.state.viewModel.clientId}
                   />
-                  <TextInput 
-                    label="Client Secret"
-                    value={this.state.client.ClientSecrets[0]}
-                  />
+                  {this.state.viewModel.clientSecrets.map(
+                    (secret) => (
+                      <TextInput 
+                        name="clientSecret"
+                        label="Client Secret"
+                        value={secret.value} />))}
                 </div> : (
                 <p>
                   <input type="submit" value="Submit" />

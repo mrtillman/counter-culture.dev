@@ -9,31 +9,22 @@ export class ClientRepo {
 
   addClient(client){
     return new Promise((resolve, reject) => {
-      const _client = Object.assign({}, client, {
-        ...client,
-        ClientId: 'newClientId',
-        ClientSecrets: ['newClientSecret'],
-      });
-      resolve(_client);
-
-      // return new Promise((resolve, reject) => {
-      //   fetch(`${SERVERS.SECURE}/api/v1/oauth2/register`, {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //       'Authorization': `bearer ${this.access_token}`,
-      //     },
-      //     body: JSON.stringify(client)
-      //   })
-      //   .then(res => {
-      //     if(res.ok){
-      //       return res.json();
-      //     }
-      //     reject(res.statusText);
-      //   })
-      //   .then(client => resolve(client))
-      //   .catch(console.log);
-      // })
+      fetch(`${SERVERS.SECURE}/api/v1/clients/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `bearer ${this.access_token}`,
+        },
+        body: JSON.stringify(client)
+      })
+      .then(res => {
+        if(res.ok){
+          return res.json();
+        }
+        reject(res.statusText);
+      })
+      .then(client => resolve(client))
+      .catch(console.log);
     })
   }
 }
