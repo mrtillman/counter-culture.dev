@@ -80,6 +80,11 @@ nx.prepare().then(() => {
       return handle(req, res);
     })
 
+  app.post('/user/logout', (req, res) => {
+    req.logout();
+    res.end();
+  });  
+
   app.get('/*', (req, res) => {
     return handle(req, res);
   })

@@ -1,14 +1,14 @@
 import React from 'react';
-// import { CounterCulture } from 'counter-culture.client';
-import Backend from '../backend';
-import Layout from '../components/layout';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { CounterCulture } from 'counter-culture.client';
+import * as commonActions from '../actions/common.actions';
 import TextInput from '../components/common/text';
 import TextBoxList from '../components/common/textBoxList';
 import CheckBoxGroup from '../components/common/checkboxGroup';
-import SERVERS from '../constants/servers';
 
-export default class Register extends React.Component {
-  
+class RegisterPage extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -39,23 +39,18 @@ export default class Register extends React.Component {
       }
     };
 
-    // TODO: absorb into presentational 
+    // TODO: absorb into presentational
     // components and higher-order components
     this.updateClientInfo = this.updateClientInfo.bind(this);
     this.addNewUri = this.addNewUri.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.loadProfile = this.loadProfile.bind(this);
     this.getClient = this.getClient.bind(this);
-  }
-
-  componentDidMount(){
-    this.loadProfile();
   }
 
   onSubmit(e){
     e.preventDefault();
-    const client = this.getClient();
-    this.backend.registerClient(client)
+    CounterCulture.client
+      .addClient(this.getClient())
         .then(client => {
           const { viewModel } = this.state;
           viewModel.clientId = client.clientId;
@@ -72,13 +67,13 @@ export default class Register extends React.Component {
   }
 
   updateClientInfo(e){
-  
+
     const viewModel = this.state.viewModel;
     const field = e.target.name;
 
     if(field === "allowedScopes"){
       viewModel[field] = viewModel[field].map(scope => {
-        return (scope.id == e.target.id) 
+        return (scope.id == e.target.id)
                 ? { ...scope, checked: e.target.checked }
                 : scope;
       });
@@ -97,9 +92,9 @@ export default class Register extends React.Component {
     } else {
       viewModel[field] = e.target.value;
     }
-    
+
     return this.setState({ viewModel });
-    
+
   }
 
   getClient(){
@@ -116,68 +111,57 @@ export default class Register extends React.Component {
     }
   }
 
-  loadProfile(){
-    fetch(`${SERVERS.DEV}/user/profile`, {
-      method: 'post',
-      mode: 'no-cors',
-      cache: 'no-cache',
-    }).then(res => {
-      if(res.ok){
-        return res.json();
-      } else {
-        throw new Error(res.statusText);
-      }
-    }).then(profile => {
-      // TODO: absorb bff logic into client lib
-      this.backend = new Backend(profile.token);
-    }).catch(console.log);
-  }
-
   render() {
     return (
-      <Layout>
-        <form onSubmit={this.onSubmit}>
-            <TextInput 
-              name="clientName"
-              label="App Name"
-              value={this.state.viewModel.clientName}
-              onChange={this.updateClientInfo}
-            />
-            <CheckBoxGroup
-              name="allowedScopes"
-              label="Scope"
-              options={this.state.viewModel.allowedScopes}
-              onChange={this.updateClientInfo}
-            />
-            <TextBoxList
-              name="redirectUris"
-              label="Redirect URIs"
-              items={this.state.viewModel.redirectUris}
-              onAddNew={this.addNewUri}
-              onChange={this.updateClientInfo}
-            />
-            {
-              this.state.viewModel.clientId
-              ? <div>
-                  <TextInput 
-                    name="clientId"
-                    label="Client ID"
-                    value={this.state.viewModel.clientId}
-                  />
-                  {this.state.viewModel.clientSecrets.map(
-                    (secret) => (
-                      <TextInput 
-                        name="clientSecret"
-                        label="Client Secret"
-                        value={secret.value} />))}
-                </div> : (
-                <p>
-                  <input type="submit" value="Submit" />
-                </p>
-              )
-            }
-        </form>
-      </Layout>
+      <form onSubmit={this.onSubmit}>
+          <TextInput
+            name="clientName"
+            label="App Name"
+            value={this.state.viewModel.clientName}
+            onChange={this.updateClientInfo}
+          />
+          <CheckBoxGroup
+            name="allowedScopes"
+            label="Scope"
+            options={this.state.viewModel.allowedScopes}
+            onChange={this.updateClientInfo}
+          />
+          <TextBoxList
+            name="redirectUris"
+            label="Redirect URIs"
+            items={this.state.viewModel.redirectUris}
+            onAddNew={this.addNewUri}
+            onChange={this.updateClientInfo}
+          />
+          {
+            this.state.viewModel.clientId
+            ? <div>
+                <TextInput
+                  name="clientId"
+                  label="Client ID"
+                  value={this.state.viewModel.clientId}
+                />
+                {this.state.viewModel.clientSecrets.map(
+                  (secret, index) => (
+                    <TextInput
+                      key={`${index}`}
+                      name="clientSecret"
+                      label="Client Secret"
+                      value={secret.value} />))}
+              </div> : (
+              <p>
+                <input type="submit" value="Submit" />
+              </p>
+            )
+          }
+      </form>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  const actions = Object.assign({}, commonActions);
+  return bindActionCreators(actions, dispatch);
+}
+
+export default connect(state => state, mapDispatchToProps)(RegisterPage);
