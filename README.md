@@ -3,10 +3,9 @@
 A developer site for [counter-culture.io](https://counter-culture.io).
 
 ---
-<!--
-[![Build Status](https://travis-ci.com/mrtillman/counter-culture.app.svg?branch=master)](https://travis-ci.com/mrtillman/counter-culture.app)
-[![Coverage Status](https://coveralls.io/repos/github/mrtillman/counter-culture.app/badge.svg?branch=master)](https://coveralls.io/github/mrtillman/counter-culture.app?branch=master)
--->
+
+[![Build Status](https://travis-ci.com/mrtillman/counter-culture.dev.svg?branch=master)](https://travis-ci.com/mrtillman/counter-culture.dev)
+[![Coverage Status](https://coveralls.io/repos/github/mrtillman/counter-culture.dev/badge.svg?branch=master)](https://coveralls.io/github/mrtillman/counter-culture.dev?branch=master)
 
 ## Getting Started
 
