@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CounterCulture } from 'counter-culture.client';
+import CounterCulture from 'counter-culture.client';
 import * as commonActions from '../actions/common.actions';
 import TextInput from '../components/common/text';
 import TextBoxList from '../components/common/textBoxList';
@@ -50,7 +50,7 @@ class RegisterPage extends React.Component {
   onSubmit(e){
     e.preventDefault();
     CounterCulture.client
-      .addClient(this.getClient())
+      .registerClient(this.getClient())
         .then(client => {
           const { viewModel } = this.state;
           viewModel.clientId = client.clientId;

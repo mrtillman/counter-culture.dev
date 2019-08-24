@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import Link from 'next/link';
-import { CounterCulture } from 'counter-culture.client';
+import CounterCulture from 'counter-culture.client';
 import KEYS from '../constants/keys';
 import SERVERS from '../constants/servers';
 import { loadUser } from '../actions/common.actions';
