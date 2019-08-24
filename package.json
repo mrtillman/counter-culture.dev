@@ -1,19 +1,54 @@
 {
   "name": "counter-culture.dev",
-  "version": "0.0.1",
-  "description": "developer site",
+  "version": "1.0.0-alpha",
+  "description": "a developer site for counter-culture.io",
   "private": true,
+  "author": "mrtillman",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "next start -p 9000",
+    "test": "jest --coverage",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
+  },
   "dependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/polyfill": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0-beta.51",
+    "@types/jest": "^24.0.12",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.4.2",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.19.0",
+    "connect-ensure-login": "^0.1.1",
+    "cookie-parser": "^1.4.4",
+    "cookie-session": "^1.3.3",
+    "counter-culture.client": "file:../client",
+    "coveralls": "^3.0.3",
+    "dotenv": "^8.0.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "express": "^4.16.4",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "next-redux-wrapper": "^3.0.0-alpha.2",
+    "prop-types": "^15.7.2",
+    "querystring": "^0.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "url": "^0.11.0",
+    "uuid": "^3.3.2"
   },
-  "scripts": {
-    "dev": "next -p 9000",
-    "build": "next build",
-    "start": "node server.js"
+  "devDependencies": {
+    "passport": "^0.4.0",
+    "passport-openidconnect": "0.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,22 +1,10 @@
-import Layout from '../components/layout';
-import Link from 'next/link';
+import React, { useEffect, useReducer } from 'react';
 
-const AppRegistrationLink = (props) => (
-  <li>
-    <Link href={`/register`}>
-      <a>Register a new application</a>
-    </Link>
-  </li>
-);
+const IndexPage = () => {
 
-const Index = (props) => {
   return (
-    <Layout>
-      <ul>
-        <AppRegistrationLink />
-      </ul>
-    </Layout>
+    <p>counter-culture dev site</p>
   );
 };
 
-export default Index;
+export default IndexPage;
