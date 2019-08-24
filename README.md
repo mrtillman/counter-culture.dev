@@ -32,7 +32,7 @@ npm install
 
 ## Environment Variables
 
-Once you've obtained your client ID and secret, find the `.env.demo` file in the project root, rename it to`.env`, and set the values accordingly:
+Once you've obtained your client ID and secret, find the `.demo.env` file in the project root, rename it to`.env`, and set the values accordingly:
 
 ```sh
 # .env
@@ -57,7 +57,6 @@ Open [http://localhost:9000](http://localhost:9000) to view it in the browser. Y
 
 ---
 
-<h6 align="center">The belief that complex systems require armies of designers and programmers is wrong. A system that is not understood in its entirety,
- or at least to a significant degree of detail by a single individual, should probably not be built. ~ Niklaus Wirth</h6>
+<h6 align="center">A primary cause of complexity is that software vendors uncritically adopt almost any feature that users want. ~ Niklaus Wirth</h6>
 
 ---
