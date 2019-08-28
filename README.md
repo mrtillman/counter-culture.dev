@@ -57,6 +57,6 @@ Open [http://localhost:9000](http://localhost:9000) to view it in the browser. Y
 
 ---
 
-<h6 align="center">A primary cause of complexity is that software vendors uncritically adopt almost any feature that users want. ~ Niklaus Wirth</h6>
+<h6 align="center">If you want them to RTFM, make a better FM. ~ Kathy Sierra</h6>
 
 ---
