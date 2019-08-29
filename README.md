@@ -6,6 +6,10 @@ A developer site for [counter-culture.io](https://counter-culture.io).
 
 [![Build Status](https://travis-ci.com/mrtillman/counter-culture.dev.svg?branch=master)](https://travis-ci.com/mrtillman/counter-culture.dev)
 [![Coverage Status](https://coveralls.io/repos/github/mrtillman/counter-culture.dev/badge.svg?branch=master)](https://coveralls.io/github/mrtillman/counter-culture.dev?branch=master)
+<a href="https://github.com/mrtillman/counter-culture.dev/releases/tag/v1.0.0-alpha">
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mrtillman/counter-culture.dev?sort=semver)
+</a>
+
 
 ## Getting Started
 
