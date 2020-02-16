@@ -16,14 +16,9 @@ class RegisterPage extends React.Component {
         clientName: "Test App",
         allowedScopes: [
           {
-            id: "counters:read",
-            label: "Read Counters",
-            checked: false,
-          },
-          {
-            id: "counters:profile",
-            label: "Read User Profile",
-            checked: false,
+            id: "openid",
+            label: "OpenID Connect",
+            checked: true,
           }
         ],
         redirectUris: [
@@ -47,6 +42,7 @@ class RegisterPage extends React.Component {
     this.getClient = this.getClient.bind(this);
   }
 
+  // TODO: remove client, create local registration logic
   onSubmit(e){
     e.preventDefault();
     CounterCulture.client
@@ -98,7 +94,7 @@ class RegisterPage extends React.Component {
   }
 
   getClient(){
-    // TODO: simplify using automapper-ts
+    // TODO: simplify using automapper
     return {
       ClientName: this.state.viewModel.clientName,
       AllowedScopes: this.state
@@ -118,12 +114,6 @@ class RegisterPage extends React.Component {
             name="clientName"
             label="App Name"
             value={this.state.viewModel.clientName}
-            onChange={this.updateClientInfo}
-          />
-          <CheckBoxGroup
-            name="allowedScopes"
-            label="Scope"
-            options={this.state.viewModel.allowedScopes}
             onChange={this.updateClientInfo}
           />
           <TextBoxList
