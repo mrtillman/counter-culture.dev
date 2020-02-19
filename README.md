@@ -40,7 +40,6 @@ Once you've obtained your client ID and secret, find the `.demo.env` file in the
 
 ```sh
 # .env
-NODE_ENV=development
 CLIENT_ID={CLIENT_ID}
 CLIENT_SECRET={CLIENT_SECRET}
 ```

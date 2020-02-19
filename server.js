@@ -3,7 +3,11 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const next = require('next');
-const dev = process.env.NODE_ENV !== 'production'
+
+// workaround for dev container
+// see https://github.com/zeit/next.js/issues/4022
+const dev = Boolean(process.env.DEV_ENV);
+
 const nx = next({ dev });
 const handle = nx.getRequestHandler();
 const cookieParser = require('cookie-parser');

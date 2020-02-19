@@ -3,6 +3,9 @@ module.exports = {
     // key: 'value'
   },
   publicRuntimeConfig: { // Will be available on both server and client
-    staticFolder: '/static'
+    staticFolder: '/static',
+  },
+  env:{
+    'DEV_ENV': true,
   }
 }
