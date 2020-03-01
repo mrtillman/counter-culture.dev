@@ -1,7 +1,7 @@
 {
   "name": "counter-culture.dev",
   "version": "1.0.0-alpha",
-  "description": "a developer site for counter-culture.io",
+  "description": "developer resources for counter-culture.io",
   "private": true,
   "author": "mrtillman",
   "license": "MIT",

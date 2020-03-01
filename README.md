@@ -1,6 +1,6 @@
 # counter-culture.dev
 
-A developer site for [counter-culture.io](https://counter-culture.io).
+Developer resources for [counter-culture.io](https://counter-culture.io).
 
 ---
 
@@ -53,7 +53,7 @@ npm run dev
 
 ## Usage
 
-Open [http://localhost:9000](http://localhost:9000) to view it in the browser. You can sign in using one of the [demo accounts](https://github.com/mrtillman/counter-culture.secure/blob/master/README.md#usage).
+Open [http://counter-culture:9000](http://counter-culture:9000) to view it in the browser. You can sign in using one of the [demo accounts](https://github.com/mrtillman/counter-culture.secure/blob/master/README.md#usage).
 
 ## License
 [MIT](https://github.com/mrtillman/counter-culture.dev/blob/master/LICENSE.md)
