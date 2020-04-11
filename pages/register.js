@@ -1,11 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CounterCulture } from 'counter-culture.client';
 import * as commonActions from '../actions/common.actions';
+import SERVERS from "../constants/servers";
 import TextInput from '../components/common/text';
 import TextBoxList from '../components/common/textBoxList';
-import CheckBoxGroup from '../components/common/checkboxGroup';
 
 class RegisterPage extends React.Component {
 
@@ -19,16 +18,21 @@ class RegisterPage extends React.Component {
             id: "openid",
             label: "OpenID Connect",
             checked: true,
+          },
+          {
+            id: "profile",
+            label: "User Profile",
+            checked: true,
           }
         ],
         redirectUris: [
           {
-            id: "foo",
-            value: "foo.com"
+            id: "hostname",
+            value: "http://counter-culture:8080/oauth2/callback"
           },
           {
-            id: "bar",
-            value: "bar.com"
+            id: "localhost",
+            value: "http://localhost:8080/oauth2/callback"
           }
         ],
       }
@@ -42,12 +46,30 @@ class RegisterPage extends React.Component {
     this.getClient = this.getClient.bind(this);
   }
 
-  // TODO: remove client, create local registration logic
+  registerClient(client){
+    const url = `${SERVERS.SECURE}/api/v1/clients/register`
+    return fetch(url, {
+      method: "POST",
+      cache: "no-cache",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${this.access_token}`,
+      },
+      body: JSON.stringify(client)
+    }).then(res => {
+      if(res.ok){
+        return res.json();
+      } else {
+        throw res.text();
+      }
+    })
+  }
+
   onSubmit(e){
     e.preventDefault();
-    CounterCulture.client
-      .registerClient(this.getClient())
+      this.registerClient(this.getClient())
         .then(client => {
+          console.log(client);
           const { viewModel } = this.state;
           viewModel.clientId = client.clientId;
           viewModel.clientSecrets = client.clientSecrets;
@@ -94,7 +116,6 @@ class RegisterPage extends React.Component {
   }
 
   getClient(){
-    // TODO: simplify using automapper
     return {
       ClientName: this.state.viewModel.clientName,
       AllowedScopes: this.state
