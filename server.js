@@ -35,6 +35,7 @@ passport.use(new OAuth2Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: `${SERVERS.DEV}/oauth2/callback`,
+    scope: "openid profile offline_access",
   },
   function(issuer, sub, profile, jwtClaims, accessToken, refereshToken, tokenResponse, done) {
     profile.token = accessToken;
