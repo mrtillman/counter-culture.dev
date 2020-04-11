@@ -1,5 +1,5 @@
 import ACTION_TYPES from '../constants/actionTypes';
-import CounterCulture from 'counter-culture.client';
+import { CounterCulture } from 'counter-culture.client';
 
 export const loadUserSuccess = user => {
   return {
@@ -10,7 +10,7 @@ export const loadUserSuccess = user => {
 
 export const loadUser = () => dispatch => {
   return CounterCulture.client
-        .getUser()
+        .GetUser()
         .then(user => {
           dispatch(loadUserSuccess(user));
         }).catch(console.log);

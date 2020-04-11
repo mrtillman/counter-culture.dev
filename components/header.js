@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from 'react';
 import Link from 'next/link';
-import CounterCulture from 'counter-culture.client';
+import { CounterCulture } from 'counter-culture.client';
 import KEYS from '../constants/keys';
 import SERVERS from '../constants/servers';
 import { loadUser } from '../actions/common.actions';
@@ -80,7 +80,7 @@ const Header = () => {
           <a>Register a new application</a>
         </Link>
         &nbsp; | &nbsp;
-        <span>hello, {state.user.userName}</span>
+        <span>hello, {state.user.name}</span>
       </>}
       <br/><br/>
     </div>
