@@ -48,7 +48,7 @@ CLIENT_SECRET={CLIENT_SECRET}
 
 ```sh
 # let it rip
-npm run dev
+npm start
 ```
 
 ## Usage

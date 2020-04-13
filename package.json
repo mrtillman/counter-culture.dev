@@ -6,9 +6,8 @@
   "author": "mrtillman",
   "license": "MIT",
   "scripts": {
-    "dev": "node server.js",
     "build": "next build",
-    "start": "next start -p 9000",
+    "start": "node server.js",
     "test": "jest --coverage",
     "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls"
   },
