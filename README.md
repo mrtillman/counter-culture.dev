@@ -6,7 +6,7 @@ A developer site for [counter-culture.io](https://counter-culture.io).
 
 [![Build Status](https://travis-ci.com/mrtillman/counter-culture.dev.svg?branch=master)](https://travis-ci.com/mrtillman/counter-culture.dev)
 [![Coverage Status](https://coveralls.io/repos/github/mrtillman/counter-culture.dev/badge.svg?branch=master)](https://coveralls.io/github/mrtillman/counter-culture.dev?branch=master)
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mrtillman/counter-culture.dev?sort=semver)](https://github.com/mrtillman/counter-culture.dev/releases/tag/v1.0.1-alpha)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mrtillman/counter-culture.dev?sort=semver)](https://github.com/mrtillman/counter-culture.dev/releases/tag/v1.0.2-alpha)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mrtillman/counter-culture.dev/blob/master/LICENSE.md)
 [![website-up](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://geeks.counter-culture.io/)
 

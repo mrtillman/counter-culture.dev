@@ -1,0 +1,41 @@
+html,
+body {
+    font-family: 'Open Sans';
+}
+
+:root {
+  --brandColor: hsl(166, 67%, 51%);
+  --background: #f5f5f5!important;
+  --textDark: hsla(0, 0%, 0%, 0.66);
+  --textLight: hsla(0, 0%, 0%, 0.33);
+}
+
+.github-icons {
+  margin-left: auto;
+}
+.github-star-repo{
+  margin-right: 10px;
+}
+
+.tabs li.is-active a {
+  color: var(--brandColor);
+  border-bottom-color: var(--brandColor);
+}
+
+.tabs a:hover{
+  border-bottom-color: var(--brandColor);
+}
+
+.is-brand-color {
+  background-color: transparent;
+  border-color: var(--brandColor);
+  color: var(--brandColor);
+}
+
+.has-text-brand-color {
+  color: var(--brandColor)!important;
+}
+
+img {
+    padding: 5px;
+}
